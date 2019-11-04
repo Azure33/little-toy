@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p{
+      height: 1000px; 
+    }
+  </style>
+</head>
+<body>
+  <p></p>
+  <img src="" data-src="2.jpg" alt="">
+  <img src="" data-src="3.jpg" alt="">
+  <img src="" data-src="4.jpg" alt="">
+  <img src="" data-src="6.jpg" alt="">
+  <script>
+  let img = document.querySelectorAll('img')
+  let index = 0
+  function lazyload(){
+    let scroll = window.pageYOffset||document.body.scrollTop
+    let inner = window.innerHeight
+    let add = scroll + inner
+    for(let i = index ; i < img.length; i++ ){ 
+      let offset = img[i].offsetTop
+      if(offset < inner + scroll ) {
+        // console.log(`${offset}<${add}`)
+        index ++
+        img[i].src = img[i].getAttribute('data-src')
+      }
+    }
+  }
+  function throttle(fn,delay) {
+    let lastTime = null
+    return function() {
+      let nowTime = new Date().getTime()
+      if(nowTime-lastTime>delay) {
+        fn()
+        lastTime = nowTime
+      }
+    }
+  }
+
+  window.onscroll = throttle(lazyload, 200)
+  // let str  = 'aabcbaafsafsa'
+  // let news = [...new Set(str)].join('')
+  // console.log(news)
+  </script>
+</body>
+</html>

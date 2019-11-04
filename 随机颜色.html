@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p{
+      height: 2000px;
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <p id="abc"></p>
+  <script>
+    let [a,b,c] = [Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)]
+    let p = document.getElementsByTagName('p')[0]
+    let d = p.style.backgroundColor = `rgb(${a},${b},${c})`
+    console.log(d)
+  </script>
+</body>
+</html>
